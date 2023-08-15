@@ -54,17 +54,16 @@ module module_y(path, obj, cut) {
 
 module module_z(path, obj, cut) {
     union() {
-        translate([0, 0, -cut[2]/2])
+        translate([0, 0, -cut[2]])
         intersection() {
             module_y(path, obj, cut);
             translate([0, 0, (obj[2] *2 + cut[2]) / 2])
             cube([obj[0], obj[1], obj[2]], center=true);
         }
 
-        translate([0, 0, 0])
         intersection() {
             module_y(path, obj, cut);
-            translate([0, 0, cut[2] / 2])
+            translate([0, 0, -cut[2] / 2])
             cube([obj[0], obj[1], obj[2]], center=true);
         }
     }
